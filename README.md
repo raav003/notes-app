@@ -14,24 +14,6 @@ This is a full-stack Notes App built using **Node.js** for the backend and **Ang
 
 ---
 
-## Project Structure
-
-Project Root/
-├── backend/ # Node.js server code
-│ ├── routes/
-│ ├── controllers/
-│ ├── models/
-│ ├── server.js
-│ └── package.json
-├── frontend/ # Angular application
-│ ├── src/
-│ ├── angular.json
-│ └── package.json
-├── .gitignore
-└── README.md
-
----
-
 ## Prerequisites
 - Node.js v18+  
 - npm v9+  
