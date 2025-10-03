@@ -1,0 +1,32 @@
+<div class="heading">
+  <h2>My Notes</h2>
+</div>
+<div class="notes-container">
+
+  <div class="notes-list">
+    <div *ngFor="let note of notes" class="note-card">
+      <div>
+        <h3>{{ note.Title }}</h3>
+        <p>{{ note.Data }}</p>
+      </div>
+      <div class="button-container">
+        <button class="note-button" (click)="editData(note)">+</button>
+        <button class="note-button" (click)="deleteNote(note.id)">-</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="fab" (click)="openForm()">+</button>
+
+  <div class="form-modal" *ngIf="showForm">
+    <div class="form-content">
+      <h3>Add Note</h3>
+      <input type="text" placeholder="Title" [(ngModel)]="Title">
+      <textarea placeholder="Content" [(ngModel)]="Data"></textarea>
+      <div class="form-actions">
+        <button class="save-btn" (click)="saveNote()">Save</button>
+        <button class="cancel-btn" (click)="closeForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
