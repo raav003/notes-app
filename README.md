@@ -56,8 +56,11 @@ http://localhost:4200
 ## API Endpoints
 
 GET /notes – Get all notes
+
 POST /notes – Add a new note
+
 PUT /notes/:id – Update a note by ID
+
 DELETE /notes/:id – Delete a note by ID
 
 ## Technologies Used
