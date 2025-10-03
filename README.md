@@ -66,5 +66,7 @@ DELETE /notes/:id – Delete a note by ID
 ## Technologies Used
 
 Backend: Node.js, Express, fs module
+
 Frontend: Angular, HttpClientModule
+
 Others: JSON for data storage, Git for version control
