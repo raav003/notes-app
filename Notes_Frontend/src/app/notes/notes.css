@@ -16,17 +16,35 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  .note-card{
+  /* align-items: center; */
+
+  .note-card {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .button-container{
+
+  .button-container {
     display: flex;
     gap: 15px;
+    align-items: center;
   }
-  .note-button{
+
+  .note-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    border: 1px solid;
+
+    mat-icon {
+      font-size: 17px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 

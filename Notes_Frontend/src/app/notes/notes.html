@@ -10,8 +10,9 @@
         <p>{{ note.Data }}</p>
       </div>
       <div class="button-container">
-        <button class="note-button" (click)="editData(note)">+</button>
-        <button class="note-button" (click)="deleteNote(note.id)">-</button>
+        <button class="note-button" (click)="editData(note)"><mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
+</button>
+        <button class="note-button" (click)="deleteNote(note._id)"><mat-icon>delete</mat-icon></button>
       </div>
     </div>
   </div>
