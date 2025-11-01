@@ -23,7 +23,7 @@ export class Note {
   editNote(data:any):Observable<any>{
     return this.http.put(`${this.api}/notes/${data._id}`,data)
   }
-  deleteNote(_id:any):Observable<any>{
-    return this.http.delete(`${this.api}/notes/${_id}`)
+  deleteNote(_id:any,lastRecordId:any):Observable<any>{
+    return this.http.delete(`${this.api}/notes/${_id}/${lastRecordId}`)
   }
 }

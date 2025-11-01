@@ -10,7 +10,7 @@ const controller = require('../controllers/notesController')
 router.get('/',controller.getNotesData)
 router.post('/',controller.addNote)
 router.put('/:id',controller.editNote)
-router.delete('/:id',controller.deleteNote)
+router.delete('/:id/:lastRecordId',controller.deleteNote)
 
 // router.use('/*',(req,res)=>{res.status(404).send('route not found')})
 // router.use((req, res) => {

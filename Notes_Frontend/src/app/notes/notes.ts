@@ -48,11 +48,13 @@ export class Notes {
       return
     }
     this.pageNo += 1;
+    console.log(this.pageNo);
+    
     // this.limit+=10;
     this.noteService.getNotes(this.pageNo, this.limit).subscribe((data) => {
       this.notes = [...this.notes, ...data.notesData]
       console.log(this.notes);
-      if (this.notes.length >= data.totalNotes) {
+      if (this.notes.length >= data.totalCount) {
         this.stopScroll = true
       }
     },
@@ -110,23 +112,27 @@ export class Notes {
     }
   }
   deleteNote(_id: any) {
-    this.noteService.deleteNote(_id).subscribe((data) => {
+    const lastRecordId = this.notes[this.notes.length-1]._id
+    this.noteService.deleteNote(_id,lastRecordId).subscribe((data) => {
       this.notes = this.notes.filter((ele: any) => ele._id != _id)
+      this.notes.push(data.lastNote)
       console.log(this.notes);
-      if (!this.stopScroll) {
-        this.pageNo+=1; 
-        this.noteService.getNotesAfterSkip(this.notes.length,this.pageNo, this.limit).subscribe((data) => {
-          this.notes = [...this.notes, ...data.notesData]
-          console.log(this.notes);
-          if (this.notes.length >= data.totalNotes) {
-            this.stopScroll = true
-          }
-        },
-          err => {
-            console.error(err);
-          }
-        )
-      }
+      // if (!this.stopScroll && this.notes.length<=this.limit) {
+      //   this.pageNo+=1; 
+      //   console.log(this.pageNo);
+        
+      //   this.noteService.getNotesAfterSkip(this.notes.length,this.pageNo, this.limit).subscribe((data) => {
+      //     this.notes = [...this.notes, ...data.notesData]
+      //     console.log(this.notes);
+      //     if (this.notes.length >= data.totalCount) {
+      //       this.stopScroll = true
+      //     }
+      //   },
+      //     err => {
+      //       console.error(err);
+      //     }
+      //   )
+      // }
     },
       err => {
         console.log(err);
