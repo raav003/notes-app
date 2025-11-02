@@ -1,11 +1,14 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const port = 4000
+require('dotenv').config()
+const PORT = process.env.PORT
+// console.log(process.env.PORT);
+
 app.use(cors())
 app.use(express.json())
 const DB = require('./data/db')
-const errorHandler = require('./controllers/errorController')
+const globalErrorHandler = require('./controllers/errorController')
 const notesRoutes = require('./routes/notesRoutes')
 app.use('/notes', notesRoutes)
 // app.use(express.static('public'))
@@ -39,8 +42,8 @@ app.use((req, res, next) => {
 //     // }
 // });
 
-app.use(errorHandler)
+app.use(globalErrorHandler)
 
-app.listen(port, () => {
-    console.log('Server is running on', port);
+app.listen(PORT, () => {
+    console.log('Server is running on', PORT);
 })

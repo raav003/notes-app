@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const AppError = require('../utils/error')
 
 exports.getNotesData = async (req, res, next) => {
-    try {
+    // try {
         const filter = {}
 
         // if (req.query.Published) {
@@ -32,16 +32,16 @@ exports.getNotesData = async (req, res, next) => {
             .skip(skip)
             .sort({ 'createdAt': -1 })
         res.status(200).json({ notesData: notesData, totalCount: totalCount })
-    } catch (err) {
-        // res.status(400).json({ "error": err.message })
-        // if (err.status) {
-        //     next(err)
-        // }else{
-        //     err.status =400
-        //     next(err)
-        // }
-        next(err)
-    }
+    // } catch (err) {
+    //     // res.status(400).json({ "error": err.message })
+    //     // if (err.status) {
+    //     //     next(err)
+    //     // }else{
+    //     //     err.status =400
+    //     //     next(err)
+    //     // }
+    //     next(err)
+    // }
 }
 
 exports.addNote = async (req, res, next) => {
@@ -51,41 +51,41 @@ exports.addNote = async (req, res, next) => {
     }
     const { Title, Data } = req.body
     const notesData = new notesModel({ Title, Data })
-    try {
+    // try {
         const savedNote = await notesData.save();
         res.status(201).json({ message: 'Note added', note: savedNote })
-    }
-    catch (err) {
-        // res.status(400).json({ 'error': err.message })
-        next(err)
-    }
+    // }
+    // catch (err) {
+    //     // res.status(400).json({ 'error': err.message })
+    //     next(err)
+    // }
 }
 
 exports.editNote = async (req, res, next) => {
     const id = req.params.id
-    try {
+    // try {
         const { Title, Data } = req.body
         const updateNote = await notesModel.findByIdAndUpdate(id, { Title, Data }, { new: true, runValidators: true })
         res.status(200).json({ updatedNote: updateNote })
-    }
-    catch (err) {
-        // res.status(400).json({ 'Error': err.message })
-        // err.status = 400
-        next(err)
-    }
+    // }
+    // catch (err) {
+    //     // res.status(400).json({ 'Error': err.message })
+    //     // err.status = 400
+    //     next(err)
+    // }
 }
 
 exports.deleteNote = async (req, res, next) => {
     const id = req.params.id
     const lastRecordId = req.params.lastRecordId
-    try {
+    // try {
         const deletedNote = await notesModel.findByIdAndDelete(id)
         const nextNote = await notesModel.findOne({_id:{$lt:new mongoose.Types.ObjectId(lastRecordId)}}).sort({_id:'desc'})
         res.status(200).json({ lastNote: nextNote })
-    }
-    catch (err) {
-        // res.status(400).json({ 'Error': err.message })
-        // err.status = 400
-        next(err)
-    }
+    // }
+    // catch (err) {
+    //     // res.status(400).json({ 'Error': err.message })
+    //     // err.status = 400
+    //     next(err)
+    // }
 }

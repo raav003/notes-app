@@ -1,16 +1,16 @@
 const express = require('express')
+const catchAsync = require('../utils/catchAsync')
 const router = express.Router()
 const controller = require('../controllers/notesController')
-
 // router.use((req,res,next)=>{
 //     console.log("In route");
 //     next()
 // })
 
-router.get('/',controller.getNotesData)
-router.post('/',controller.addNote)
-router.put('/:id',controller.editNote)
-router.delete('/:id/:lastRecordId',controller.deleteNote)
+router.get('/',catchAsync(controller.getNotesData))
+router.post('/',catchAsync(controller.addNote))
+router.put('/:id',catchAsync(controller.editNote))
+router.delete('/:id/:lastRecordId',catchAsync(controller.deleteNote))
 
 // router.use('/*',(req,res)=>{res.status(404).send('route not found')})
 // router.use((req, res) => {
